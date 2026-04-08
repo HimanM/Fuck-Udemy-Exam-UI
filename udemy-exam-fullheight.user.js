@@ -1,9 +1,15 @@
 // ==UserScript==
-// @name         Udemy Exam Full Height
-// @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  Removes max-block-size limit on Udemy practice exam questions and adds height: 100vh. Toggle button in the footer bar.
-// @author       You
+// @name         Fuck Udemy Exam UI
+// @namespace    https://github.com/HimanM/Fuck-Udemy-Exam-UI
+// @version      1.0.0
+// @description  Fixes Udemy's god-awful practice exam UI. Removes the bullshit max-height limit so you can actually see your damn questions without scrolling through a keyhole.
+// @author       https://github.com/HimanM
+// @license      MIT
+// @homepageURL  https://github.com/HimanM/Fuck-Udemy-Exam-UI
+// @supportURL   https://github.com/HimanM/Fuck-Udemy-Exam-UI/issues
+// @updateURL    https://raw.githubusercontent.com/HimanM/Fuck-Udemy-Exam-UI/main/udemy-exam-fullheight.user.js
+// @downloadURL  https://raw.githubusercontent.com/HimanM/Fuck-Udemy-Exam-UI/main/udemy-exam-fullheight.user.js
+// @icon         https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg
 // @match        https://www.udemy.com/course/*/learn/quiz/*
 // @match        https://www.udemy.com/course/*/learn/practice/*
 // @grant        GM_addStyle
