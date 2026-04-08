@@ -11,7 +11,7 @@
 
 A Tampermonkey userscript that fixes Udemy's **absolutely fucking annoying** practice exam interface.
 
-You know the one — where Udemy decides you only deserve to see your exam questions through a tiny little window that takes up like 25% of your screen, while the rest is wasted on useless shit like course promos and "Get your certification" ads you didn't ask for.
+You know the one. Udemy decides you only deserve to see your exam questions through a tiny little window that takes up like 25% of your screen, while the rest is wasted on useless shit like course promos and "Get your certification" ads you didn't ask for.
 
 ### The Problem
 
@@ -20,26 +20,26 @@ Udemy's practice exam UI has a `max-block-size` CSS property that squishes the q
 - **Endless scrolling** just to read a single question and its answers
 - **75% of your screen is wasted** on promotional garbage and redundant navigation
 - **You can't even see all the answer choices** without scrolling down like you're reading the Terms of Service
-- **No way to resize it** — Udemy gives you zero control over your own damn screen
+- **No way to resize it** - Udemy gives you zero control over your own damn screen
 
 This is especially infuriating when you're trying to actually learn and prepare for a certification exam. The UI actively works against you.
 
-#### Before — Udemy's default exam UI
+#### Before - Udemy's default exam UI
 
-![Before — the question area is squished into a tiny viewport while the rest of the screen is wasted](docs/image.png)
+![Before - the question area is squished into a tiny viewport while the rest of the screen is wasted](docs/image.png)
 
-#### After — with this script
+#### After - with this script
 
-![After — full height view, all answer choices visible without scrolling](docs/fixed.png)
+![After - full height view, all answer choices visible without scrolling](docs/fixed.png)
 
 ### The Fix
 
 This script tells Udemy's shitty height limit to go fuck itself:
 
-- **Removes `max-block-size`** — no more artificial height cap
-- **Sets `height: 100vh`** — uses your full screen like a normal application should
-- **Toggle button** — adds a button right next to Udemy's own controls so you can switch between full height and default view
-- **SPA-proof** — survives Udemy's single-page navigation without breaking
+- **Removes `max-block-size`** - no more artificial height cap
+- **Sets `height: 100vh`** - uses your full screen like a normal application should
+- **Toggle button** - adds a button right next to Udemy's own controls so you can switch between full height and default view
+- **SPA-proof** - survives Udemy's single-page navigation without breaking
 
 ---
 
@@ -58,7 +58,7 @@ This script tells Udemy's shitty height limit to go fuck itself:
 
 ### Step 2: Install the Script
 
-**Click the button below** — Tampermonkey will automatically detect it and prompt you to install:
+**Click the button below.** Tampermonkey will automatically detect it and prompt you to install:
 
 [![Click to Install](https://img.shields.io/badge/INSTALL_SCRIPT-Click_Here-success?style=for-the-badge&logo=tampermonkey)](https://raw.githubusercontent.com/HimanM/Fuck-Udemy-Exam-UI/main/udemy-exam-fullheight.user.js)
 
@@ -74,11 +74,11 @@ Or manually:
 ## Usage
 
 1. Open any Udemy practice exam or quiz
-2. The script activates automatically — full height is ON by default
+2. The script activates automatically. Full height is ON by default
 3. Look at the bottom-right footer bar, next to the Fullscreen and Expanded View buttons
 4. Click the **toggle button** to switch between:
-   - **Full height** — question area uses 100% of your viewport
-   - **Default** — Udemy's original cramped-ass layout
+   - **Full height** - question area uses 100% of your viewport
+   - **Default** - Udemy's original cramped-ass layout
 
 ---
 
@@ -101,7 +101,7 @@ Or manually:
 └─────────────────────────────────────────────────────┘
 ```
 
-The script uses `MutationObserver` to survive Udemy's SPA navigation — it auto re-injects itself when you move between questions or sections without needing a page refresh.
+The script uses `MutationObserver` to survive Udemy's SPA navigation. It auto re-injects itself when you move between questions or sections without needing a page refresh.
 
 ---
 
@@ -123,7 +123,7 @@ If you don't want to install Tampermonkey or deal with userscripts, here are oth
 
 ### Option 1: Stylus Extension (Recommended for Non-Tech Users)
 
-Stylus is a simple browser extension that lets you apply custom CSS to any website. No coding knowledge required — just paste and save.
+Stylus is a simple browser extension that lets you apply custom CSS to any website. No coding knowledge required. Just paste and save.
 
 **Step 1:** Install Stylus for your browser:
 
@@ -146,15 +146,15 @@ Stylus is a simple browser extension that lets you apply custom CSS to any websi
 }
 ```
 
-**Step 5:** At the bottom, click **Specify** and set it to: `URLs on the domain` → `udemy.com`
+**Step 5:** At the bottom, click **Specify** and set it to: `URLs on the domain` > `udemy.com`
 
 **Step 6:** Give it a name like "Fix Udemy Exam UI" and click **Save**
 
-That's it. It persists across refreshes, browser restarts, everything. The downside is you don't get a toggle button — it's always on. But honestly, that's probably what you want anyway.
+That's it. It persists across refreshes, browser restarts, everything. The downside is you don't get a toggle button, it's always on. But honestly, that's probably what you want anyway.
 
 ---
 
-### Option 2: Browser DevTools (Quick and Dirty — Resets on Refresh)
+### Option 2: Browser DevTools (Quick and Dirty - Resets on Refresh)
 
 This is the manual approach. No extensions needed, but **you have to redo it every time you refresh the page**.
 
@@ -189,7 +189,7 @@ This is a built-in Chrome feature that lets you persist CSS changes across refre
 
 **Step 3:** Click **Select folder for overrides** and choose any empty folder on your computer
 
-**Step 4:** Chrome will ask for permission — click **Allow**
+**Step 4:** Chrome will ask for permission. Click **Allow**
 
 **Step 5:** Now go to the **Elements** tab, find any element with the class `curriculum-item-view--scaled-height-limiter` (use Ctrl+F in the Elements panel to search)
 
@@ -223,7 +223,7 @@ This is a built-in Chrome feature that lets you persist CSS changes across refre
 
 ## License
 
-[MIT](LICENSE) — Do whatever the fuck you want with it.
+[MIT](LICENSE) - Do whatever the fuck you want with it.
 
 ---
 
