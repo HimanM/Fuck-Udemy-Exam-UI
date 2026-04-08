@@ -24,6 +24,14 @@ Udemy's practice exam UI has a `max-block-size` CSS property that squishes the q
 
 This is especially infuriating when you're trying to actually learn and prepare for a certification exam. The UI actively works against you.
 
+#### Before — Udemy's default exam UI
+
+![Before — the question area is squished into a tiny viewport while the rest of the screen is wasted](docs/image.png)
+
+#### After — with this script
+
+![After — full height view, all answer choices visible without scrolling](docs/fixed.png)
+
 ### The Fix
 
 This script tells Udemy's shitty height limit to go fuck itself:
@@ -106,6 +114,110 @@ The script uses `MutationObserver` to survive Udemy's SPA navigation — it auto
 | Edge | Works |
 | Safari | Works (with Tampermonkey) |
 | Brave | Works |
+
+---
+
+## Alternatives (No Userscript Required)
+
+If you don't want to install Tampermonkey or deal with userscripts, here are other ways to fix this shit.
+
+### Option 1: Stylus Extension (Recommended for Non-Tech Users)
+
+Stylus is a simple browser extension that lets you apply custom CSS to any website. No coding knowledge required — just paste and save.
+
+**Step 1:** Install Stylus for your browser:
+
+| Browser | Link |
+|---------|------|
+| ![Chrome](https://img.shields.io/badge/Chrome-4285F4?style=flat-square&logo=googlechrome&logoColor=white) | [Chrome Web Store](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne) |
+| ![Firefox](https://img.shields.io/badge/Firefox-FF7139?style=flat-square&logo=firefoxbrowser&logoColor=white) | [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/styl-us/) |
+| ![Edge](https://img.shields.io/badge/Edge-0078D7?style=flat-square&logo=microsoftedge&logoColor=white) | [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/stylus/fjnbnpbmkenffdnngjfgmeleoegfcffe) |
+
+**Step 2:** Click the Stylus icon in your browser toolbar, then click **Manage**
+
+**Step 3:** Click **Write new style**
+
+**Step 4:** Paste this into the code editor:
+
+```css
+[class*="curriculum-item-view--scaled-height-limiter"] {
+    max-block-size: none !important;
+    height: 100vh !important;
+}
+```
+
+**Step 5:** At the bottom, click **Specify** and set it to: `URLs on the domain` → `udemy.com`
+
+**Step 6:** Give it a name like "Fix Udemy Exam UI" and click **Save**
+
+That's it. It persists across refreshes, browser restarts, everything. The downside is you don't get a toggle button — it's always on. But honestly, that's probably what you want anyway.
+
+---
+
+### Option 2: Browser DevTools (Quick and Dirty — Resets on Refresh)
+
+This is the manual approach. No extensions needed, but **you have to redo it every time you refresh the page**.
+
+**Step 1:** Open any Udemy practice exam
+
+**Step 2:** Press `F12` (or right-click anywhere and select **Inspect**)
+
+**Step 3:** Click the **Console** tab at the top of the DevTools panel
+
+**Step 4:** Paste this and press Enter:
+
+```javascript
+document.querySelectorAll('[class*="curriculum-item-view--scaled-height-limiter"]').forEach(el => {
+    el.style.maxBlockSize = 'none';
+    el.style.height = '100vh';
+});
+```
+
+**Step 5:** Close DevTools (`F12` again) and enjoy the full-height view
+
+> **Note:** This resets every time you refresh the page. If that annoys you (and it will), use one of the other options above.
+
+---
+
+### Option 3: Chrome DevTools Local Overrides (Persistent, No Extensions)
+
+This is a built-in Chrome feature that lets you persist CSS changes across refreshes without any extension. Slightly more involved to set up, but completely native.
+
+**Step 1:** Open DevTools (`F12`) and go to the **Sources** tab
+
+**Step 2:** In the left sidebar, click **Overrides**
+
+**Step 3:** Click **Select folder for overrides** and choose any empty folder on your computer
+
+**Step 4:** Chrome will ask for permission — click **Allow**
+
+**Step 5:** Now go to the **Elements** tab, find any element with the class `curriculum-item-view--scaled-height-limiter` (use Ctrl+F in the Elements panel to search)
+
+**Step 6:** In the **Styles** pane on the right, click the `+` button to add a new CSS rule
+
+**Step 7:** Add these properties:
+
+```css
+[class*="curriculum-item-view--scaled-height-limiter"] {
+    max-block-size: none !important;
+    height: 100vh !important;
+}
+```
+
+**Step 8:** The changes are now saved to your local overrides folder and will persist across page refreshes
+
+> **Note:** This only works in Chrome/Edge (Chromium browsers). The overrides persist until you clear them manually.
+
+---
+
+### Quick Comparison
+
+| Method | Persists? | Toggle Button? | Difficulty | Extensions Needed? |
+|--------|-----------|----------------|------------|-------------------|
+| **Tampermonkey userscript** | Yes | Yes | Easy (one-click install) | Tampermonkey |
+| **Stylus extension** | Yes | No (always on) | Easy | Stylus |
+| **DevTools console** | No (resets on refresh) | No | Easy | None |
+| **Chrome Local Overrides** | Yes | No | Medium | None |
 
 ---
 
