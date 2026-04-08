@@ -5,7 +5,7 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Udemy](https://img.shields.io/badge/Udemy-A435F0?style=for-the-badge&logo=udemy&logoColor=white)](https://www.udemy.com)
 
-> Inspired by [u/JFujitaR](https://www.reddit.com/user/JFujitaR/)'s [post](https://www.reddit.com/r/Udemy/comments/1rvqs60/horrible_practice_exam_interface/) on r/Udemy about the horrible practice exam interface.
+> CSS fix originally shared by [u/JFujitaR](https://www.reddit.com/user/JFujitaR/) in [this r/Udemy thread](https://www.reddit.com/r/Udemy/comments/1rvqs60/horrible_practice_exam_interface/). This script automates that fix.
 
 ---
 
