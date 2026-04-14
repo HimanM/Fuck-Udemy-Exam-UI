@@ -87,23 +87,27 @@ Or manually:
 ## How It Works
 
 ```
-┌─────────────────────────────────────────────────────┐
-│  Udemy sets this on the question container:          │
-│                                                     │
-│    .curriculum-item-view--scaled-height-limiter {    │
-│        max-block-size: calc(100vh - 29rem); <- SHIT  │
-│    }                                                │
-│                                                     │
-│  This script overrides it to:                       │
-│                                                     │
-│    [class*="...scaled-height-limiter"] {             │
-│        max-block-size: none !important;   <- FIXED   │
-│        height: 100vh !important;          <- FIXED   │
-│    }                                                │
-└─────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│  Udemy sets this on the question container:               │
+│                                                          │
+│    .curriculum-item-view--scaled-height-limiter {         │
+│        max-block-size: calc(100vh - 29rem);    <- SHIT   │
+│    }                                                     │
+│                                                          │
+│  This script measures the footer bar height and           │
+│  overrides it to:                                        │
+│                                                          │
+│    [class*="...scaled-height-limiter"] {                  │
+│        max-block-size: none !important;        <- FIXED  │
+│        height: calc(100vh - <footer>px) !important;      │
+│    }                                                     │
+│                                                          │
+│  The footer (Next question, Settings, Fullscreen, etc.)  │
+│  stays visible at the bottom. No more scrolling past it. │
+└──────────────────────────────────────────────────────────┘
 ```
 
-The script uses `MutationObserver` to survive Udemy's SPA navigation. It auto re-injects itself when you move between questions or sections without needing a page refresh.
+The script dynamically measures the exam footer bar's height and subtracts it from `100vh`, so the question area fills the screen while keeping the navigation controls visible. It also recalculates on window resize and uses `MutationObserver` to survive Udemy's SPA navigation.
 
 ---
 

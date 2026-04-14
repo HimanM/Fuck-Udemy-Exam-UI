@@ -25,27 +25,48 @@
     // The CSS class prefix we're targeting (Udemy hashes the suffix, so we use a partial selector)
     const TARGET_CLASS_PREFIX = 'curriculum-item-view--scaled-height-limiter';
 
+    const FOOTER_CLASS_PREFIX = 'curriculum-item-footer--footer';
+
     let enabled = true;
 
-    // ── Inject override stylesheet ──────────────────────────────────
-    function injectStyle() {
-        if (document.getElementById(STYLE_ID)) return;
+    // ── Measure footer and inject override stylesheet ────────────────
+    function getFooterHeight() {
+        const footer = document.querySelector(`[class*="${FOOTER_CLASS_PREFIX}"]`);
+        return footer ? footer.offsetHeight : 0;
+    }
 
-        const style = document.createElement('style');
-        style.id = STYLE_ID;
-        style.textContent = `
+    function injectStyle() {
+        const footerHeight = getFooterHeight();
+        const existing = document.getElementById(STYLE_ID);
+
+        const css = `
             [class*="${TARGET_CLASS_PREFIX}"] {
                 max-block-size: none !important;
-                height: 100vh !important;
+                height: calc(100vh - ${footerHeight}px) !important;
             }
         `;
-        document.head.appendChild(style);
+
+        if (existing) {
+            existing.textContent = css;
+        } else {
+            const style = document.createElement('style');
+            style.id = STYLE_ID;
+            style.textContent = css;
+            document.head.appendChild(style);
+        }
     }
 
     function removeStyle() {
         const el = document.getElementById(STYLE_ID);
         if (el) el.remove();
     }
+
+    // Re-calculate on window resize
+    window.addEventListener('resize', () => {
+        if (enabled && document.getElementById(STYLE_ID)) {
+            injectStyle();
+        }
+    });
 
     function toggle() {
         enabled = !enabled;
@@ -118,6 +139,11 @@
         // Insert right after the expanded view button's wrapper
         wrapper.parentNode.insertBefore(btn, wrapper.nextSibling);
         updateButton();
+
+        // Footer is now in the DOM, so (re)inject style with correct footer height
+        if (enabled) {
+            injectStyle();
+        }
         return true;
     }
 
@@ -151,7 +177,8 @@
     }
 
     // ── Boot ────────────────────────────────────────────────────────
-    injectStyle();
+    // Don't call injectStyle() here - footer isn't in the DOM yet.
+    // Style gets injected once injectButton() confirms the footer exists.
     waitForFooter();
     watchForDOMChanges();
 })();
